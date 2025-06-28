@@ -4,7 +4,7 @@ export interface IDXT extends Document {
   name: string;
   description: string;
   downloadUrl: string;
-  providerUrl: string;
+  providerUrl?: string;
   submittedBy: string;
   downloads: number;
   approved: boolean;
@@ -32,8 +32,9 @@ const DXTSchema = new Schema<IDXT>({
   },
   providerUrl: {
     type: String,
-    required: [true, 'Provider URL is required'],
+    required: false,
     trim: true,
+    default: '',
   },
   submittedBy: {
     type: String,

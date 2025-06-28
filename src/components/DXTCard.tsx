@@ -10,7 +10,7 @@ interface DXTCardProps {
     name: string;
     description: string;
     downloadUrl: string;
-    providerUrl: string;
+    providerUrl?: string;
     downloads: number;
   };
   onDownload: (dxtId: string, downloadUrl: string) => void;
@@ -40,13 +40,15 @@ export default function DXTCard({ dxt, onDownload }: DXTCardProps) {
             <Download className="mr-2 h-4 w-4" />
             Download
           </Button>
-          <Button 
-            variant="outline" 
-            size="icon"
-            onClick={() => window.open(dxt.providerUrl, '_blank')}
-          >
-            <ExternalLink className="h-4 w-4" />
-          </Button>
+          {dxt.providerUrl && (
+            <Button 
+              variant="outline" 
+              size="icon"
+              onClick={() => window.open(dxt.providerUrl, '_blank')}
+            >
+              <ExternalLink className="h-4 w-4" />
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>
