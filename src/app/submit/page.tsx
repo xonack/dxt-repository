@@ -67,7 +67,7 @@ export default function SubmitPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Submit Your DXT Extension</CardTitle>
+          <CardTitle>Submit Your .dxt Extension</CardTitle>
           <CardDescription>
             Share your Desktop Extension with the community. Submissions will be reviewed before appearing in the repository.
           </CardDescription>
@@ -78,7 +78,7 @@ export default function SubmitPage() {
               <Label htmlFor="name">Extension Name</Label>
               <Input
                 id="name"
-                placeholder="Enter the name of your DXT extension"
+                placeholder="Enter the name of your .dxt extension"
                 {...register('name')}
               />
               {errors.name && (
@@ -150,7 +150,7 @@ export default function SubmitPage() {
               ) : (
                 <>
                   <Send className="mr-2 h-4 w-4" />
-                  Submit DXT Extension
+                  Submit .dxt Extension
                 </>
               )}
             </Button>
@@ -168,7 +168,7 @@ export default function SubmitPage() {
           </DialogHeader>
           <div className="space-y-4">
             <p>
-              Thank you for submitting your DXT extension! Your submission has been received and will be reviewed by our team.
+              Thank you for submitting your .dxt extension! Your submission has been received and will be reviewed by our team.
             </p>
             <p className="text-sm text-muted-foreground">
               You'll be notified via email once your extension has been approved and is live in the repository.

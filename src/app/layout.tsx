@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DXT Repository",
-  description: "Discover and share Desktop Extensions (DXT) for enhanced productivity",
+  title: ".dxt Repository",
+  description: "Discover and share Desktop Extensions (.dxt) for enhanced productivity",
 };
 
 export default function RootLayout({

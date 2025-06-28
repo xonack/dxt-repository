@@ -32,7 +32,7 @@ export default function DXTGrid({ dxtList, loading, onDownload }: DXTGridProps) 
   if (dxtList.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground text-lg">No DXT extensions found.</p>
+        <p className="text-muted-foreground text-lg">No .dxt extensions found.</p>
         <p className="text-muted-foreground">Try adjusting your search or check back later for new submissions.</p>
       </div>
     );
