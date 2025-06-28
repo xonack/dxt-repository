@@ -70,8 +70,18 @@ export default function Home() {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
         <div>
           <h1 className="text-4xl font-bold mb-2">.dxt Repository</h1>
-          <p className="text-xl text-muted-foreground">
-            Discover and share Desktop Extensions for enhanced productivity
+          <p className="text-xl text-muted-foreground mb-3">
+            Browse and share Desktop Extensions that enhance your workflow
+          </p>
+          <p className="text-sm text-muted-foreground">
+            <a 
+              href="https://www.anthropic.com/engineering/desktop-extensions" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              Learn about .dxt format →
+            </a>
           </p>
         </div>
         <div className="mt-4 lg:mt-0">
