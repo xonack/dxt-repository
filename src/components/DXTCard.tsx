@@ -38,7 +38,7 @@ export default function DXTCard({ dxt, onDownload }: DXTCardProps) {
         <div className="flex gap-2">
           <Button onClick={handleDownload} className="flex-1">
             <Download className="mr-2 h-4 w-4" />
-            Download
+            Download .dxt
           </Button>
           <Button 
             variant="outline" 
