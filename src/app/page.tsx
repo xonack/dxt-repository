@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import SearchAndSort from '@/components/SearchAndSort';
-import DTXGrid from '@/components/DTXGrid';
+import DXTGrid from '@/components/DXTGrid';
 export default function Home() {
-  const [dtxList, setDtxList] = useState<Array<{
+  const [dxtList, setDxtList] = useState<Array<{
     _id: string;
     name: string;
     description: string;
@@ -18,7 +18,7 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [sort, setSort] = useState('popularity');
 
-  const fetchDTX = async () => {
+  const fetchDXT = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
@@ -26,38 +26,38 @@ export default function Home() {
         sort,
       });
       
-      const response = await fetch(`/api/dtx?${params}`);
+      const response = await fetch(`/api/dxt?${params}`);
       const data = await response.json();
       
       if (response.ok) {
-        setDtxList(data.dtxList);
+        setDxtList(data.dxtList);
       } else {
-        console.error('Failed to fetch DTX:', data.error);
+        console.error('Failed to fetch DXT:', data.error);
       }
     } catch (error) {
-      console.error('Error fetching DTX:', error);
+      console.error('Error fetching DXT:', error);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchDTX();
+    fetchDXT();
   }, [search, sort]);
 
-  const handleDownload = async (dtxId: string, downloadUrl: string) => {
+  const handleDownload = async (dxtId: string, downloadUrl: string) => {
     try {
-      await fetch('/api/dtx/track-download', {
+      await fetch('/api/dxt/track-download', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ dtxId }),
+        body: JSON.stringify({ dxtId }),
       });
       
       window.open(downloadUrl, '_blank');
       
-      fetchDTX();
+      fetchDXT();
     } catch (error) {
       console.error('Error tracking download:', error);
       window.open(downloadUrl, '_blank');
@@ -68,7 +68,7 @@ export default function Home() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
         <div>
-          <h1 className="text-4xl font-bold mb-2">DTX Repository</h1>
+          <h1 className="text-4xl font-bold mb-2">DXT Repository</h1>
           <p className="text-xl text-muted-foreground">
             Discover and share Desktop Extensions for enhanced productivity
           </p>
@@ -77,7 +77,7 @@ export default function Home() {
           <Link href="/submit">
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              Submit DTX
+              Submit DXT
             </Button>
           </Link>
         </div>
@@ -90,8 +90,8 @@ export default function Home() {
         onSortChange={setSort}
       />
 
-      <DTXGrid 
-        dtxList={dtxList}
+      <DXTGrid 
+        dxtList={dxtList}
         loading={loading}
         onDownload={handleDownload}
       />

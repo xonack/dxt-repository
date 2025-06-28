@@ -4,33 +4,33 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Download, ExternalLink } from 'lucide-react';
-interface DTXCardProps {
-  dtx: {
+interface DXTCardProps {
+  dxt: {
     _id: string;
     name: string;
     description: string;
     downloadUrl: string;
     downloads: number;
   };
-  onDownload: (dtxId: string, downloadUrl: string) => void;
+  onDownload: (dxtId: string, downloadUrl: string) => void;
 }
 
-export default function DTXCard({ dtx, onDownload }: DTXCardProps) {
+export default function DXTCard({ dxt, onDownload }: DXTCardProps) {
   const handleDownload = () => {
-    onDownload(dtx._id, dtx.downloadUrl);
+    onDownload(dxt._id, dxt.downloadUrl);
   };
 
   return (
     <Card className="h-full flex flex-col">
       <CardHeader className="flex-grow">
         <div className="flex items-start justify-between">
-          <CardTitle className="text-lg font-semibold">{dtx.name}</CardTitle>
+          <CardTitle className="text-lg font-semibold">{dxt.name}</CardTitle>
           <Badge variant="secondary" className="ml-2">
-            {dtx.downloads} downloads
+            {dxt.downloads} downloads
           </Badge>
         </div>
         <CardDescription className="line-clamp-3">
-          {dtx.description}
+          {dxt.description}
         </CardDescription>
       </CardHeader>
       <CardContent className="pt-0">
@@ -42,7 +42,7 @@ export default function DTXCard({ dtx, onDownload }: DTXCardProps) {
           <Button 
             variant="outline" 
             size="icon"
-            onClick={() => window.open(dtx.downloadUrl, '_blank')}
+            onClick={() => window.open(dxt.downloadUrl, '_blank')}
           >
             <ExternalLink className="h-4 w-4" />
           </Button>

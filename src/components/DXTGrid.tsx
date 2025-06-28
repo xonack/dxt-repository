@@ -1,10 +1,10 @@
 'use client';
 
 import { Skeleton } from '@/components/ui/skeleton';
-import DTXCard from './DTXCard';
+import DXTCard from './DXTCard';
 
-interface DTXGridProps {
-  dtxList: Array<{
+interface DXTGridProps {
+  dxtList: Array<{
     _id: string;
     name: string;
     description: string;
@@ -12,10 +12,10 @@ interface DTXGridProps {
     downloads: number;
   }>;
   loading: boolean;
-  onDownload: (dtxId: string, downloadUrl: string) => void;
+  onDownload: (dxtId: string, downloadUrl: string) => void;
 }
 
-export default function DTXGrid({ dtxList, loading, onDownload }: DTXGridProps) {
+export default function DXTGrid({ dxtList, loading, onDownload }: DXTGridProps) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -28,10 +28,10 @@ export default function DTXGrid({ dtxList, loading, onDownload }: DTXGridProps) 
     );
   }
 
-  if (dtxList.length === 0) {
+  if (dxtList.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-muted-foreground text-lg">No DTX extensions found.</p>
+        <p className="text-muted-foreground text-lg">No DXT extensions found.</p>
         <p className="text-muted-foreground">Try adjusting your search or check back later for new submissions.</p>
       </div>
     );
@@ -39,8 +39,8 @@ export default function DTXGrid({ dtxList, loading, onDownload }: DTXGridProps) 
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {dtxList.map((dtx) => (
-        <DTXCard key={dtx._id} dtx={dtx} onDownload={onDownload} />
+      {dxtList.map((dxt) => (
+        <DXTCard key={dxt._id} dxt={dxt} onDownload={onDownload} />
       ))}
     </div>
   );

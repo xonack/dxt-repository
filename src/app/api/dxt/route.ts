@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
-import DTX from '@/models/DTX';
+import DXT from '@/models/DXT';
 
 export async function GET(request: NextRequest) {
   try {
@@ -33,16 +33,19 @@ export async function GET(request: NextRequest) {
         break;
     }
     
-    const dtxList = await DTX.find(query)
+    const dxtList = await DXT.find(query)
       .sort(sortOption)
       .select('-submittedBy -approved -updatedAt')
       .limit(50);
     
-    return NextResponse.json({ dtxList });
+    return NextResponse.json({ dxtList });
   } catch (error) {
-    console.error('Error fetching DTX:', error);
+    console.error('Error fetching DXT:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch DTX' },
+      { 
+        error: 'Failed to fetch DXT',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }

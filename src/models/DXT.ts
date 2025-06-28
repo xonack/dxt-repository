@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface IDTX extends Document {
+export interface IDXT extends Document {
   name: string;
   description: string;
   downloadUrl: string;
@@ -11,7 +11,7 @@ export interface IDTX extends Document {
   updatedAt: Date;
 }
 
-const DTXSchema = new Schema<IDTX>({
+const DXTSchema = new Schema<IDXT>({
   name: {
     type: String,
     required: [true, 'Name is required'],
@@ -47,8 +47,8 @@ const DTXSchema = new Schema<IDTX>({
   timestamps: true,
 });
 
-DTXSchema.index({ name: 'text', description: 'text' });
-DTXSchema.index({ downloads: -1 });
-DTXSchema.index({ createdAt: -1 });
+DXTSchema.index({ name: 'text', description: 'text' });
+DXTSchema.index({ downloads: -1 });
+DXTSchema.index({ createdAt: -1 });
 
-export default mongoose.models.DTX || mongoose.model<IDTX>('DTX', DTXSchema);
+export default mongoose.models.DXT || mongoose.model<IDXT>('DXT', DXTSchema);

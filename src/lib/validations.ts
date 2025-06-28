@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const dtxSubmissionSchema = z.object({
+export const dxtSubmissionSchema = z.object({
   name: z
     .string()
     .min(1, 'Name is required')
@@ -21,4 +21,4 @@ export const dtxSubmissionSchema = z.object({
     .min(1, 'Email is required'),
 });
 
-export type DTXSubmissionData = z.infer<typeof dtxSubmissionSchema>;
+export type DXTSubmissionData = z.infer<typeof dxtSubmissionSchema>;

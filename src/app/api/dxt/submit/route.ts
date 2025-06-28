@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import dbConnect from '@/lib/mongodb';
-import DTX from '@/models/DTX';
-import { dtxSubmissionSchema } from '@/lib/validations';
+import DXT from '@/models/DXT';
+import { dxtSubmissionSchema } from '@/lib/validations';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -10,40 +10,40 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    const validatedData = dtxSubmissionSchema.parse(body);
+    const validatedData = dxtSubmissionSchema.parse(body);
     
     await dbConnect();
     
-    const existingDTX = await DTX.findOne({
+    const existingDXT = await DXT.findOne({
       $or: [
         { name: validatedData.name },
         { downloadUrl: validatedData.downloadUrl }
       ]
     });
     
-    if (existingDTX) {
+    if (existingDXT) {
       return NextResponse.json(
-        { error: 'A DTX with this name or download URL already exists' },
+        { error: 'A DXT with this name or download URL already exists' },
         { status: 400 }
       );
     }
     
-    const newDTX = new DTX({
+    const newDXT = new DXT({
       ...validatedData,
       approved: false,
       downloads: 0,
     });
     
-    await newDTX.save();
+    await newDXT.save();
     
     if (process.env.RESEND_API_KEY && process.env.ADMIN_EMAIL) {
       try {
         await resend.emails.send({
-          from: 'DTX Repository <noreply@dtx-repo.com>',
+          from: 'DXT Repository <noreply@dxt-repo.com>',
           to: [process.env.ADMIN_EMAIL],
-          subject: 'New DTX Submission Pending Approval',
+          subject: 'New DXT Submission Pending Approval',
           html: `
-            <h2>New DTX Submission</h2>
+            <h2>New DXT Submission</h2>
             <p><strong>Name:</strong> ${validatedData.name}</p>
             <p><strong>Description:</strong> ${validatedData.description}</p>
             <p><strong>Download URL:</strong> ${validatedData.downloadUrl}</p>
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     }
     
     return NextResponse.json(
-      { message: 'DTX submitted successfully. It will be reviewed by an admin.' },
+      { message: 'DXT submitted successfully. It will be reviewed by an admin.' },
       { status: 201 }
     );
   } catch (error: any) {
@@ -70,9 +70,12 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    console.error('Error submitting DTX:', error);
+    console.error('Error submitting DXT:', error);
     return NextResponse.json(
-      { error: 'Failed to submit DTX' },
+      { 
+        error: 'Failed to submit DXT',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }

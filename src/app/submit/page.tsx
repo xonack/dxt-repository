@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { dtxSubmissionSchema, type DTXSubmissionData } from '@/lib/validations';
+import { dxtSubmissionSchema, type DXTSubmissionData } from '@/lib/validations';
 import { ArrowLeft, Send, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -24,16 +24,16 @@ export default function SubmitPage() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<DTXSubmissionData>({
-    resolver: zodResolver(dtxSubmissionSchema),
+  } = useForm<DXTSubmissionData>({
+    resolver: zodResolver(dxtSubmissionSchema),
   });
 
-  const onSubmit = async (data: DTXSubmissionData) => {
+  const onSubmit = async (data: DXTSubmissionData) => {
     setIsSubmitting(true);
     setError('');
 
     try {
-      const response = await fetch('/api/dtx/submit', {
+      const response = await fetch('/api/dxt/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function SubmitPage() {
         setShowSuccessDialog(true);
         reset();
       } else {
-        setError(result.error || 'Failed to submit DTX');
+        setError(result.error || 'Failed to submit DXT');
       }
     } catch (error) {
       setError('An unexpected error occurred. Please try again.');
@@ -67,7 +67,7 @@ export default function SubmitPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Submit Your DTX Extension</CardTitle>
+          <CardTitle>Submit Your DXT Extension</CardTitle>
           <CardDescription>
             Share your Desktop Extension with the community. Submissions will be reviewed before appearing in the repository.
           </CardDescription>
@@ -78,7 +78,7 @@ export default function SubmitPage() {
               <Label htmlFor="name">Extension Name</Label>
               <Input
                 id="name"
-                placeholder="Enter the name of your DTX extension"
+                placeholder="Enter the name of your DXT extension"
                 {...register('name')}
               />
               {errors.name && (
@@ -137,7 +137,7 @@ export default function SubmitPage() {
               ) : (
                 <>
                   <Send className="mr-2 h-4 w-4" />
-                  Submit DTX Extension
+                  Submit DXT Extension
                 </>
               )}
             </Button>
@@ -155,7 +155,7 @@ export default function SubmitPage() {
           </DialogHeader>
           <div className="space-y-4">
             <p>
-              Thank you for submitting your DTX extension! Your submission has been received and will be reviewed by our team.
+              Thank you for submitting your DXT extension! Your submission has been received and will be reviewed by our team.
             </p>
             <p className="text-sm text-muted-foreground">
               You'll be notified via email once your extension has been approved and is live in the repository.

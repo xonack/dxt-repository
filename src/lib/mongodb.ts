@@ -6,6 +6,10 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
+if (MONGODB_URI.includes('<db_password>')) {
+  throw new Error('Please replace <db_password> in MONGODB_URI with your actual MongoDB password');
+}
+
 interface CachedConnection {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
