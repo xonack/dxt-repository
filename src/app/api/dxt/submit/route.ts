@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
             <p><strong>Name:</strong> ${validatedData.name}</p>
             <p><strong>Description:</strong> ${validatedData.description}</p>
             <p><strong>Download URL:</strong> ${validatedData.downloadUrl}</p>
+            <p><strong>Provider URL:</strong> ${validatedData.providerUrl}</p>
             <p><strong>Submitted by:</strong> ${validatedData.submittedBy}</p>
             <p><strong>Submitted at:</strong> ${new Date().toISOString()}</p>
             

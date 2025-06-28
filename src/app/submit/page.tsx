@@ -113,6 +113,19 @@ export default function SubmitPage() {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="providerUrl">Provider Website URL</Label>
+              <Input
+                id="providerUrl"
+                type="url"
+                placeholder="https://your-website.com or https://github.com/user/repo"
+                {...register('providerUrl')}
+              />
+              {errors.providerUrl && (
+                <p className="text-sm text-destructive">{errors.providerUrl.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="submittedBy">Your Email</Label>
               <Input
                 id="submittedBy"

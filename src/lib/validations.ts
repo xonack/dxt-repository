@@ -15,6 +15,10 @@ export const dxtSubmissionSchema = z.object({
     .string()
     .url('Please enter a valid URL')
     .min(1, 'Download URL is required'),
+  providerUrl: z
+    .string()
+    .url('Please enter a valid URL')
+    .min(1, 'Provider URL is required'),
   submittedBy: z
     .string()
     .email('Please enter a valid email address')
