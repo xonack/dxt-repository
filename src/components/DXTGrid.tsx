@@ -9,7 +9,7 @@ interface DXTGridProps {
     name: string;
     description: string;
     downloadUrl: string;
-    providerUrl?: string;
+    providerUrl: string;
     downloads: number;
   }>;
   loading: boolean;

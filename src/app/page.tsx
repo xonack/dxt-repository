@@ -12,7 +12,7 @@ export default function Home() {
     name: string;
     description: string;
     downloadUrl: string;
-    providerUrl?: string;
+    providerUrl: string;
     downloads: number;
   }>>([]);
   const [loading, setLoading] = useState(true);
