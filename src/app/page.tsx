@@ -69,20 +69,24 @@ export default function Home() {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
         <div>
-          <h1 className="text-4xl font-bold mb-2">.dxt Repository</h1>
+          <h1 className="text-4xl font-bold mb-2">.dxt repository</h1>
           <p className="text-xl text-muted-foreground mb-3">
             Browse and share Desktop Extensions that enhance your AI workflow
           </p>
-          <p className="text-sm text-muted-foreground">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>New to .dxt?</span>
             <a 
               href="https://www.anthropic.com/engineering/desktop-extensions" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline"
+              className="inline-flex items-center gap-1 text-foreground hover:text-blue-600 transition-colors"
             >
-              Learn about .dxt format →
+              Learn more
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
             </a>
-          </p>
+          </div>
         </div>
         <div className="mt-4 lg:mt-0">
           <Link href="/submit">
