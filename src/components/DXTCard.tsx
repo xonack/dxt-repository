@@ -30,7 +30,7 @@ export default function DXTCard({ dxt, onDownload }: DXTCardProps) {
             {dxt.downloads} downloads
           </Badge>
         </div>
-        <CardDescription className="line-clamp-3">
+        <CardDescription className="line-clamp-3 text-base leading-relaxed">
           {dxt.description}
         </CardDescription>
       </CardHeader>
